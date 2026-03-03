@@ -71,9 +71,8 @@ If you migrate the config file to another machine or user account, you will need
 
 ### v1.0.0
 
-- Renamed from Wisper Clone to EchoType
+- Initial public release
 - API key encryption via Windows DPAPI
-- Automatic config directory migration from `WisperClone` to `EchoType`
 - MIT license
 
 ## License

@@ -8,7 +8,6 @@ from dpapi import encrypt_string, decrypt_string
 log = logging.getLogger('echotype.config')
 
 _APPDATA = Path(os.environ.get('APPDATA', os.path.expanduser('~')))
-_OLD_DIR = _APPDATA / 'WisperClone'
 CONFIG_DIR = _APPDATA / 'EchoType'
 CONFIG_FILE = CONFIG_DIR / 'config.json'
 
@@ -35,19 +34,8 @@ DEFAULTS = {
 }
 
 
-def _migrate_directory():
-    """Migrate config directory from WisperClone to EchoType."""
-    if _OLD_DIR.exists() and not CONFIG_DIR.exists():
-        try:
-            _OLD_DIR.rename(CONFIG_DIR)
-            log.info('Migrated config directory %s -> %s', _OLD_DIR, CONFIG_DIR)
-        except OSError:
-            log.exception('Failed to migrate config directory')
-
-
 class Config:
     def __init__(self):
-        _migrate_directory()
         self._data = dict(DEFAULTS)
         self.load()
 

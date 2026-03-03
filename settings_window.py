@@ -434,12 +434,6 @@ class SettingsWindow(QWidget):
                 winreg.HKEY_CURRENT_USER, STARTUP_KEY,
                 0, winreg.KEY_SET_VALUE | winreg.KEY_QUERY_VALUE,
             )
-            # Clean up old WisperClone registry entry
-            try:
-                winreg.DeleteValue(key, 'WisperClone')
-            except FileNotFoundError:
-                pass
-
             if enable:
                 exe = sys.executable
                 winreg.SetValueEx(key, APP_NAME, 0, winreg.REG_SZ, f'"{exe}"')
